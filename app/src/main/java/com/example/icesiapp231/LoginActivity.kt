@@ -27,27 +27,7 @@ class LoginActivity : AppCompatActivity() {
 
         binding.loginBtn.setOnClickListener {
 
-            lifecycleScope.launch(Dispatchers.IO) {
-                try {
-                    Firebase.auth.signInWithEmailAndPassword(
-                        binding.emailInput.editText?.text.toString(),
-                        binding.passwordInput.editText?.text.toString(),
-                    ).await()
-                    withContext(Dispatchers.Main) {
-                        startActivity(
-                            Intent(
-                            this@LoginActivity, MainActivity::class.java
-                            )
-                        )
-                    }
-                } catch (e: Exception) {
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(
-                            this@LoginActivity,
-                            e.message, Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
+
 
 
             }
