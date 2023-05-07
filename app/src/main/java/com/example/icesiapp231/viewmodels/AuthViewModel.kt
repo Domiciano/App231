@@ -21,6 +21,14 @@ class AuthViewModel : ViewModel() {
 
     val status: MutableLiveData<Int> = MutableLiveData()
 
+    fun getAuthStatus(){
+        if(Firebase.auth.currentUser != null){
+            status.value = AuthState.AUTH
+        }else{
+            status.value = AuthState.NO_AUTH
+        }
+    }
+
     fun signup(user: User, password: String) {
         status.value = AuthState.LOADING
         viewModelScope.launch(Dispatchers.IO) {
@@ -38,14 +46,14 @@ class AuthViewModel : ViewModel() {
             } catch (e: Exception) {
                 e.printStackTrace()
                 Log.d(">>>", e.message.toString())
-                withContext(Dispatchers.Main) { status.value = AuthState.NO_AUTH }
+                withContext(Dispatchers.Main) { status.value = AuthState.AUTH_ERROR_EMAIL_DUPLICATED }
             }
         }
 
     }
 
     fun login(email: String, pass: String) {
-
+        status.value = AuthState.LOADING
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 Firebase.auth.signInWithEmailAndPassword(
@@ -53,19 +61,29 @@ class AuthViewModel : ViewModel() {
                     pass,
                 ).await()
                 withContext(Dispatchers.Main) {
-
+                    status.value = AuthState.AUTH
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-
+                    status.value = AuthState.AUTH_ERROR_LOGIN
                 }
             }
         }
     }
+
+    fun signout(){
+        status.value = AuthState.LOADING
+        Firebase.auth.signOut()
+        status.value = AuthState.NO_AUTH
+    }
+
+
 }
 
 object AuthState{
-    const val NO_AUTH = 0;
-    const val LOADING = 1;
-    const val AUTH = 2;
+    const val NO_AUTH = 0
+    const val LOADING = 1
+    const val AUTH = 2
+    const val AUTH_ERROR_EMAIL_DUPLICATED = 3
+    const val AUTH_ERROR_LOGIN = 4
 }

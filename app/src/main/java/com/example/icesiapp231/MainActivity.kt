@@ -4,11 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.icesiapp231.databinding.ActivityLoginBinding
 import com.example.icesiapp231.databinding.ActivityMainBinding
 import com.example.icesiapp231.fragments.ProfileFragment
 import com.example.icesiapp231.model.User
+import com.example.icesiapp231.viewmodels.AuthState
+import com.example.icesiapp231.viewmodels.AuthViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
@@ -25,35 +28,30 @@ class MainActivity : AppCompatActivity() {
     }
     val profileFragment = ProfileFragment.newInstance()
 
+    val authViewModel:AuthViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.mainFragmentContainer, profileFragment)
-            .commit()
-
-
-        if(Firebase.auth.currentUser==null){
-            startActivity(
-                Intent(this, LoginActivity::class.java)
-            )
-            finish()
-        }else{
-            lifecycleScope.launch(Dispatchers.Main) {
-                val res = Firebase.firestore.collection("users").document(
-                    Firebase.auth.currentUser!!.uid
-                ).get().await()
-                val me = res.toObject(User::class.java)
-                withContext(Dispatchers.Main){
-                    Toast.makeText(this@MainActivity,
-                        me?.name,
-                        Toast.LENGTH_SHORT)
-                        .show()
+        authViewModel.status.observe(this){
+            when(it){
+                AuthState.NO_AUTH->{
+                    startActivity(
+                        Intent(this, LoginActivity::class.java)
+                    )
+                    finish()
+                }
+                AuthState.AUTH->{
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.mainFragmentContainer, profileFragment)
+                        .commit()
                 }
             }
         }
+        authViewModel.getAuthStatus()
+
 
 
     }

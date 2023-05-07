@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.icesiapp231.databinding.ActivitySignupBinding
 import com.example.icesiapp231.model.User
+import com.example.icesiapp231.viewmodels.AuthState
 import com.example.icesiapp231.viewmodels.AuthViewModel
 
 class SignupActivity : AppCompatActivity() {
@@ -22,13 +23,13 @@ class SignupActivity : AppCompatActivity() {
 
         viewmodel.status.observe(this){
             when(it){
-                1->{
+                AuthState.AUTH->{
                     startActivity(
                         Intent(this, MainActivity::class.java)
                     )
                     finish()
                 }
-                -1->{
+                AuthState.AUTH_ERROR_EMAIL_DUPLICATED->{
                     Toast.makeText(this, "Hubo un error", Toast.LENGTH_SHORT).show()
                 }
             }
