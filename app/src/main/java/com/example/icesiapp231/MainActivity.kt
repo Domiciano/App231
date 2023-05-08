@@ -3,23 +3,13 @@ package com.example.icesiapp231
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.lifecycleScope
-import com.example.icesiapp231.databinding.ActivityLoginBinding
+import androidx.fragment.app.Fragment
 import com.example.icesiapp231.databinding.ActivityMainBinding
 import com.example.icesiapp231.fragments.ProfileFragment
-import com.example.icesiapp231.model.User
+import com.example.icesiapp231.fragments.WorldFragment
 import com.example.icesiapp231.viewmodels.AuthState
 import com.example.icesiapp231.viewmodels.AuthViewModel
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
     val profileFragment = ProfileFragment.newInstance()
+    val worldFragment = WorldFragment.newInstance()
 
     val authViewModel:AuthViewModel by viewModels()
 
@@ -43,16 +34,24 @@ class MainActivity : AppCompatActivity() {
                     finish()
                 }
                 AuthState.AUTH->{
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.mainFragmentContainer, profileFragment)
-                        .commit()
+                    loadFragment(profileFragment)
                 }
             }
         }
         authViewModel.getAuthStatus()
 
-
-
+        binding.mainBottomBar.setOnItemSelectedListener {
+            when(it.itemId){
+                R.id.profile -> loadFragment(profileFragment)
+                R.id.world -> loadFragment(worldFragment)
+            }
+            true
+        }
+    }
+    fun loadFragment(fragment:Fragment){
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.mainFragmentContainer, fragment)
+            .commit()
     }
 }
