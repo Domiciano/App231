@@ -1,0 +1,119 @@
+{
+  "project_info": {
+    "project_number": "612300733454",
+    "firebase_url": "https://facelogprueba.firebaseio.com",
+    "project_id": "facelogprueba",
+    "storage_bucket": "facelogprueba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:612300733454:android:5815929c10703221f9505f",
+        "android_client_info": {
+          "package_name": "com.example.icesiapp231"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "612300733454-fq88aclah02hdhg093ubhgvmsd84ipuv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJRQL69gQ_Rd3xyxef3Bvb-X85U3gJBRg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "612300733454-fq88aclah02hdhg093ubhgvmsd84ipuv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "612300733454-q7ujnuh21t96dv8g75mqrdhfuvvnq6av.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.myApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:612300733454:android:7359a84912c9f6c1f9505f",
+        "android_client_info": {
+          "package_name": "com.example.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "612300733454-fq88aclah02hdhg093ubhgvmsd84ipuv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJRQL69gQ_Rd3xyxef3Bvb-X85U3gJBRg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "612300733454-fq88aclah02hdhg093ubhgvmsd84ipuv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "612300733454-q7ujnuh21t96dv8g75mqrdhfuvvnq6av.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.myApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:612300733454:android:d94ef0996e21ac59f9505f",
+        "android_client_info": {
+          "package_name": "edu.co.icesi.testfcm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "612300733454-fq88aclah02hdhg093ubhgvmsd84ipuv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJRQL69gQ_Rd3xyxef3Bvb-X85U3gJBRg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "612300733454-fq88aclah02hdhg093ubhgvmsd84ipuv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "612300733454-q7ujnuh21t96dv8g75mqrdhfuvvnq6av.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.myApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
