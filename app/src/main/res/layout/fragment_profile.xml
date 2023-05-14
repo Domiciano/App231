@@ -19,6 +19,7 @@
             android:id="@+id/profileImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/ic_launcher_background" />
     </androidx.cardview.widget.CardView>
 
@@ -65,4 +66,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailTV" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

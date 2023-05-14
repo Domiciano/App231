@@ -25,6 +25,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+
+        requestPermissions(
+            arrayOf(
+                android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                android.Manifest.permission.CAMERA,
+            ), 1
+        )
+
         authViewModel.status.observe(this){
             when(it){
                 AuthState.NO_AUTH->{
